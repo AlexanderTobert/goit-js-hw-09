@@ -39,7 +39,7 @@ const timer = {
     start() {
         const selectDate = new Date(dateTimeFieldRef.value)
         // getRefs(timerRef);
-
+        dateTimeFieldRef.disabled = true
         Notiflix.Notify.success('Peaceful and quiet skies very soon. Timer started successfully')
 
         btnStartRef.disabled = true;
@@ -50,6 +50,7 @@ const timer = {
             if (difference <= 1000) {
                 clearInterval(this.intervalId);
                 btnStartRef.disabled = false;
+                dateTimeFieldRef.disabled = false;
             }
 
             const data = convertMs(difference);
