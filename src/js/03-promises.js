@@ -11,8 +11,14 @@ function submitForm(e) {
   e.preventDefault();
   let startPos = 0;
   let startTime = 0;
-  for (let i = 0; i < amountRef.value; i++) {
+  if ((Number(delayRef.value) < 0 ) || (Number(stepRef.value) < 0 )) {
+      console.log(Number(delayRef.value), Number(stepRef.value))
+      Notiflix.Notify.failure(`❌ Please enter correct values`);
+      return;
+  } else {
+    for (let i = 0; i < amountRef.value; i++) {
     startPos += 1;
+    
     const promiseDelay = Number(delayRef.value) + startTime;
     startTime += Number(stepRef.value);
     createPromise(startPos, promiseDelay)
@@ -23,6 +29,8 @@ function submitForm(e) {
         Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
   }
+  }
+  
 }
 
 function createPromise(position, delay) {
