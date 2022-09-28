@@ -39,6 +39,10 @@ const timer = {
     start() {
         const selectDate = new Date(dateTimeFieldRef.value)
         // getRefs(timerRef);
+        if (selectDate <= Date.now()) {
+            Notiflix.Notify.failure('Please choose a date in the future');
+            return;
+        }
         dateTimeFieldRef.disabled = true
         Notiflix.Notify.success('Peaceful and quiet skies very soon. Timer started successfully')
 
